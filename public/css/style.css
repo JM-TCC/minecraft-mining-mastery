@@ -1,0 +1,1162 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Minecraft Color Palette */
+    --creeper-green: #4a5d23;
+    --creeper-dark: #2d3a15;
+    --creeper-light: #6b7c3a;
+    --minecraft-brown: #8b4513;
+    --minecraft-stone: #808080;
+    --minecraft-dirt: #8b7355;
+    --minecraft-grass: #7cb342;
+    --minecraft-diamond: #5dade2;
+    --minecraft-iron: #c0c0c0;
+    --minecraft-gold: #ffd700;
+    --minecraft-redstone: #dc143c;
+    --minecraft-emerald: #50c878;
+    --minecraft-lapis: #4169e1;
+    --minecraft-coal: #2f2f2f;
+    
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-accent: #ffd700;
+    
+    /* Background Colors */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-card: #3a3a3a;
+    --bg-hover: #4a4a4a;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--creeper-dark) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid var(--creeper-green);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--creeper-light);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.nav-logo i {
+    margin-right: 10px;
+    color: var(--minecraft-diamond);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    background: var(--creeper-green);
+    color: var(--text-accent);
+    transform: translateY(-2px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--minecraft-diamond);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: var(--text-primary);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Main Content */
+.main-content {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+}
+
+/* Hero Section */
+.hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--creeper-dark) 0%, var(--bg-primary) 50%, var(--creeper-green) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%234a5d23" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.1;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--text-accent);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--creeper-green), var(--creeper-light));
+    color: var(--text-primary);
+    box-shadow: 0 4px 15px rgba(74, 93, 35, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(74, 93, 35, 0.6);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, var(--minecraft-diamond), var(--minecraft-lapis));
+    color: var(--text-primary);
+    box-shadow: 0 4px 15px rgba(93, 173, 226, 0.4);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(93, 173, 226, 0.6);
+}
+
+/* Creeper Face Animation */
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.creeper-face {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    width: 200px;
+    height: 200px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.creeper-pixel {
+    background: var(--creeper-green);
+    border: 2px solid var(--creeper-dark);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.creeper-pixel:nth-child(2),
+.creeper-pixel:nth-child(4),
+.creeper-pixel:nth-child(6),
+.creeper-pixel:nth-child(8) {
+    background: var(--creeper-dark);
+}
+
+.creeper-pixel:hover {
+    background: var(--minecraft-diamond);
+    transform: scale(1.1);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Features Section */
+.features {
+    padding: 80px 0;
+    background: var(--bg-secondary);
+}
+
+.section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--text-accent);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid var(--creeper-green);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 93, 35, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.feature-card:hover::before {
+    left: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(74, 93, 35, 0.3);
+    border-color: var(--minecraft-diamond);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--minecraft-diamond);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.feature-card h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-accent);
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Quick Start Section */
+.quick-start {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--creeper-dark) 100%);
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+    background: var(--bg-card);
+    border-radius: 15px;
+    border-left: 5px solid var(--creeper-green);
+    transition: all 0.3s ease;
+}
+
+.step:hover {
+    transform: translateX(10px);
+    border-left-color: var(--minecraft-diamond);
+    box-shadow: 0 5px 20px rgba(74, 93, 35, 0.2);
+}
+
+.step-number {
+    background: linear-gradient(45deg, var(--creeper-green), var(--creeper-light));
+    color: var(--text-primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.step-content h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-accent);
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+    background: var(--creeper-dark);
+    padding: 60px 0 20px;
+    border-top: 3px solid var(--creeper-green);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    font-family: 'Orbitron', monospace;
+    color: var(--text-accent);
+    margin-bottom: 20px;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--minecraft-diamond);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--creeper-green);
+    color: var(--text-secondary);
+}
+
+/* Page Header */
+.page-header {
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, var(--creeper-dark) 0%, var(--bg-primary) 100%);
+    text-align: center;
+    border-bottom: 3px solid var(--creeper-green);
+}
+
+.page-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-accent);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+}
+
+.page-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Resource Navigation */
+.resource-nav {
+    background: var(--bg-secondary);
+    padding: 30px 0;
+    border-bottom: 2px solid var(--creeper-green);
+}
+
+.resource-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    background: var(--bg-card);
+    border: 2px solid var(--creeper-green);
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.tab-btn:hover {
+    background: var(--creeper-green);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 93, 35, 0.3);
+}
+
+.tab-btn.active {
+    background: var(--minecraft-diamond);
+    border-color: var(--minecraft-diamond);
+    color: var(--text-primary);
+}
+
+.tab-btn i {
+    font-size: 1.2rem;
+}
+
+/* Resource Content */
+.resource-content {
+    padding: 60px 0;
+    background: var(--bg-primary);
+}
+
+.resource-content.hidden {
+    display: none;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.content-main h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.5rem;
+    color: var(--text-accent);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.intro {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.strategy-section {
+    margin-bottom: 50px;
+    padding: 30px;
+    background: var(--bg-card);
+    border-radius: 15px;
+    border-left: 5px solid var(--creeper-green);
+}
+
+.strategy-section h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    color: var(--text-accent);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.strategy-section i {
+    color: var(--minecraft-diamond);
+    font-size: 1.5rem;
+}
+
+/* Y-Level Info */
+.y-level-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.y-level-card {
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid;
+}
+
+.y-level-card.best {
+    background: rgba(93, 173, 226, 0.1);
+    border-color: var(--minecraft-diamond);
+}
+
+.y-level-card.good {
+    background: rgba(74, 93, 35, 0.1);
+    border-color: var(--creeper-green);
+}
+
+.y-level-card h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-accent);
+}
+
+/* Technique Steps */
+.technique-steps {
+    margin-top: 25px;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.step-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.step-number {
+    background: linear-gradient(45deg, var(--creeper-green), var(--creeper-light));
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.step-text h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-accent);
+}
+
+.step-text p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Tool Recommendations */
+.tool-recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.tool-card {
+    padding: 25px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    border: 2px solid var(--creeper-green);
+    transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--minecraft-diamond);
+    box-shadow: 0 10px 25px rgba(74, 93, 35, 0.2);
+}
+
+.tool-card h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    color: var(--text-accent);
+    margin-bottom: 15px;
+}
+
+.tool-card p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.tool-stats {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: var(--creeper-green);
+    color: var(--text-primary);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Sidebar */
+.content-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid var(--creeper-green);
+}
+
+.info-card h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    color: var(--text-accent);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.fact-list, .tip-list {
+    list-style: none;
+}
+
+.fact-list li, .tip-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--creeper-green);
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.fact-list li:last-child, .tip-list li:last-child {
+    border-bottom: none;
+}
+
+.fact-list strong, .tip-list strong {
+    color: var(--text-accent);
+}
+
+/* Mod Categories */
+.mod-categories {
+    background: var(--bg-secondary);
+    padding: 30px 0;
+    border-bottom: 2px solid var(--creeper-green);
+}
+
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    background: var(--bg-card);
+    border: 2px solid var(--creeper-green);
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.category-btn:hover {
+    background: var(--creeper-green);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 93, 35, 0.3);
+}
+
+.category-btn.active {
+    background: var(--minecraft-diamond);
+    border-color: var(--minecraft-diamond);
+    color: var(--text-primary);
+}
+
+/* Mod Content */
+.mod-content {
+    padding: 60px 0;
+    background: var(--bg-primary);
+}
+
+.mod-content.hidden {
+    display: none;
+}
+
+.mods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.mod-card {
+    background: var(--bg-card);
+    border-radius: 15px;
+    padding: 30px;
+    border: 2px solid var(--creeper-green);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mod-card.featured {
+    border-color: var(--minecraft-diamond);
+    box-shadow: 0 0 20px rgba(93, 173, 226, 0.2);
+}
+
+.mod-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(74, 93, 35, 0.3);
+}
+
+.mod-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--creeper-green);
+}
+
+.mod-header h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.6rem;
+    color: var(--text-accent);
+}
+
+.mod-version {
+    background: var(--creeper-green);
+    color: var(--text-primary);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.mod-description {
+    margin-bottom: 25px;
+}
+
+.mod-description p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.mod-features h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    color: var(--text-accent);
+    margin-bottom: 15px;
+}
+
+.mod-features ul {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.mod-features li {
+    color: var(--text-secondary);
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.mod-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--minecraft-diamond);
+    font-weight: bold;
+}
+
+.mod-download {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--creeper-green);
+}
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, var(--minecraft-diamond), var(--minecraft-lapis));
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(93, 173, 226, 0.4);
+}
+
+.mod-compatibility {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    background: var(--bg-secondary);
+    padding: 5px 12px;
+    border-radius: 15px;
+}
+
+/* Installation Guide */
+.installation-guide {
+    padding: 80px 0;
+    background: var(--bg-secondary);
+}
+
+.installation-guide h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--text-accent);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.install-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.install-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+    background: var(--bg-card);
+    border-radius: 15px;
+    border-left: 5px solid var(--minecraft-diamond);
+    transition: all 0.3s ease;
+}
+
+.install-step:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 25px rgba(93, 173, 226, 0.2);
+}
+
+.install-step .step-number {
+    background: linear-gradient(45deg, var(--minecraft-diamond), var(--minecraft-lapis));
+    color: var(--text-primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.install-step .step-content h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--text-accent);
+}
+
+.install-step .step-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Additional Content Styles */
+.location-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.location-card {
+    padding: 25px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    border: 2px solid var(--creeper-green);
+    transition: all 0.3s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--minecraft-diamond);
+    box-shadow: 0 10px 25px rgba(74, 93, 35, 0.2);
+}
+
+.location-card h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    color: var(--text-accent);
+    margin-bottom: 15px;
+}
+
+.location-card p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.pros-cons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pros, .cons {
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.pros {
+    background: rgba(93, 173, 226, 0.2);
+    border-left: 3px solid var(--minecraft-diamond);
+}
+
+.cons {
+    background: rgba(220, 20, 60, 0.2);
+    border-left: 3px solid var(--minecraft-redstone);
+}
+
+.collection-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.method {
+    padding: 25px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    border: 2px solid var(--creeper-green);
+    transition: all 0.3s ease;
+}
+
+.method:hover {
+    transform: translateY(-5px);
+    border-color: var(--minecraft-diamond);
+    box-shadow: 0 10px 25px rgba(74, 93, 35, 0.2);
+}
+
+.method h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    color: var(--text-accent);
+    margin-bottom: 15px;
+}
+
+.method p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.method-stats {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--bg-primary);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 20px 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .step {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .feature-card {
+        padding: 30px 20px;
+    }
+}

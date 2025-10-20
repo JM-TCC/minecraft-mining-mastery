@@ -1,0 +1,237 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build static site
+      run: |
+        # Create a simple static build process
+        mkdir -p dist
+        cp -r public/* dist/
+        cp -r views dist/
+        cp server.js dist/
+        cp package.json dist/
+        
+        # Create a simple index.html for GitHub Pages
+        cat > dist/index.html << 'EOF'
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Minecraft Mining Mastery</title>
+            <link rel="stylesheet" href="css/style.css">
+            <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        </head>
+        <body>
+            <!-- Navigation -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <i class="fas fa-cube"></i>
+                        <span>Mining Mastery</span>
+                    </div>
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="mining-guide.html" class="nav-link">Mining Guide</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="mods.html" class="nav-link">Mods</a>
+                        </li>
+                    </ul>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <h1 class="hero-title">Minecraft Mining Mastery</h1>
+                            <p class="hero-subtitle">Your Ultimate Guide to Efficient Resource Gathering</p>
+                            <div class="hero-buttons">
+                                <a href="mining-guide.html" class="btn btn-primary">
+                                    <i class="fas fa-pickaxe"></i>
+                                    Start Mining Guide
+                                </a>
+                                <a href="mods.html" class="btn btn-secondary">
+                                    <i class="fas fa-cogs"></i>
+                                    View Mods
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <div class="creeper-face">
+                                <div class="creeper-pixel"></div>
+                                <div class="creeper-pixel"></div>
+                                <div class="creeper-pixel"></div>
+                                <div class="creeper-pixel"></div>
+                                <div class="creeper-pixel"></div>
+                                <div class="creeper-pixel"></div>
+                                <div class="creeper-pixel"></div>
+                                <div class="creeper-pixel"></div>
+                                <div class="creeper-pixel"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="features">
+                    <div class="container">
+                        <h2 class="section-title">Master Every Aspect of Mining</h2>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <h3>Diamond Mining</h3>
+                                <p>Learn the most efficient techniques for finding and mining diamonds, including optimal Y-levels and branch mining strategies.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-magnet"></i>
+                                </div>
+                                <h3>Iron & Redstone</h3>
+                                <p>Discover the best methods for collecting iron and redstone, from cave mining to strip mining techniques.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <h3>Nether Mining</h3>
+                                <p>Master the dangerous art of Nether mining for ancient debris, quartz, and other valuable resources.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <h3>Tool Optimization</h3>
+                                <p>Learn which tools to use for different materials and how to maximize efficiency with enchantments.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-puzzle-piece"></i>
+                                </div>
+                                <h3>Advanced Mods</h3>
+                                <p>Explore powerful mods that can enhance your mining experience and automate resource collection.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3>Safety Tips</h3>
+                                <p>Stay safe while mining with our comprehensive guide to avoiding mobs, lava, and other hazards.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Start Section -->
+                <section class="quick-start">
+                    <div class="container">
+                        <h2 class="section-title">Quick Start Guide</h2>
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Choose Your Target</h3>
+                                    <p>Decide which resource you want to mine and understand its optimal conditions.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Prepare Your Tools</h3>
+                                    <p>Gather the right tools and enchantments for maximum efficiency.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Find the Right Location</h3>
+                                    <p>Learn where to look and how to identify promising mining locations.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3>Execute Your Strategy</h3>
+                                    <p>Apply the specific mining techniques for your chosen resource.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Mining Mastery</h3>
+                        <p>Your ultimate guide to Minecraft mining strategies and techniques.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="mining-guide.html">Mining Guide</a></li>
+                            <li><a href="mods.html">Mods</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="mining-guide.html#diamond">Diamond Mining</a></li>
+                            <li><a href="mining-guide.html#iron">Iron Farming</a></li>
+                            <li><a href="mining-guide.html#redstone">Redstone Collection</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Mining Mastery. All rights reserved.</p>
+                </div>
+            </footer>
+
+            <script src="js/main.js"></script>
+        </body>
+        </html>
+        EOF
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
