@@ -90,3 +90,10 @@ logs
 # Temporary files
 tmp/
 temp/
+
+# Duplicate files in root (keep only public/ versions)
+# css/
+# js/
+# index.html
+# mining-guide.html
+# mods.html
